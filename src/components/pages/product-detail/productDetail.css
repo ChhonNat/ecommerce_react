@@ -1,0 +1,60 @@
+.carousel .carousel-control-prev,
+.carousel .carousel-control-next {
+    width: -moz-max-content;
+    width: max-content;
+    height: -moz-max-content;
+    height: max-content;
+    background: #3C4043;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 2px;
+    padding: 0.25rem;
+}
+
+.carousel .carousel-indicators {
+    position: static;
+}
+
+.carousel .carousel-indicators button {
+    width: 50px;
+    height: 50px;
+}
+
+.carousel .carousel-indicators button img {
+    aspect-ratio: 1/1;
+    border-radius: 2px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+.carousel .carousel-indicators button.active img {
+    border: 2px solid #1967D2;
+}
+
+.rating .star_group i {
+    color: #FFDF00;
+}
+
+.product_detail .price .discount {
+    color: #1967D2;
+    font-size: 2rem;
+    margin-right: 0.25rem;
+}
+
+.product_detail .price .ori_price {
+    text-decoration: line-through;
+    color: #3C4043;
+}
+
+.item_btn_group {
+    display: flex;
+    flex-direction: row;
+}
+
+.item_btn_group input {
+    max-width: 80px;
+    border: 0;
+}

@@ -1,0 +1,217 @@
+.btn,
+.form-control {
+    border-radius: 4px !important;
+    box-shadow: none !important;
+}
+
+.btn {
+    text-transform: uppercase;
+}
+
+.ec_navbar {
+    background: rgba(239, 234, 229, 0.85);
+    border-radius: 4px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.ec_navbar .navbar-nav .nav-item .nav-link {
+    color: #3C4043;
+}
+
+.ec_navbar .navbar-nav .nav-item .nav-link.active {
+    color: #1967D2;
+}
+
+.ec_navbar .navbar-nav .nav-item .nav-link:hover {
+    color: #1967D2;
+}
+
+.ec_navbar .navbar-nav .nav-item .dropdown-menu {
+    border-radius: 4px;
+}
+
+.ec_navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item:hover {
+    background: none;
+    color: #1967D2;
+}
+
+.hero .wrapper .background {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.hero .wrapper .background img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+    position: absolute;
+}
+
+.hero .wrapper .feature_background {
+    width: 100%;
+    height: inherit;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+.hero .wrapper .feature_info {
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+.content_title .wrapper {
+    position: relative;
+}
+
+.content_title .wrapper .background {
+    width: 100%;
+    min-height: 400px;
+}
+
+.content_title .wrapper .background img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+}
+
+.content_title .wrapper .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+}
+
+.category .wrapper .card a {
+    color: #010101;
+    text-decoration: none;
+    transition: all 0.3s ease-out;
+    box-shadow: none;
+    border-radius: inherit;
+}
+
+.category .wrapper .card a .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.category .wrapper .card a .card-body img {
+    max-width: 80px;
+    height: auto;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+.category .wrapper .card a:hover {
+    color: #1967D2;
+    transform: translateY(-2px);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+
+/* .feature .wrapper .wrapper_inner {
+    background: url(../../assets/dark_abstract_background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #EFEAE5;
+    border-radius: 14px;
+    overflow: hidden;
+} */
+
+.feature .wrapper .wrapper_inner .feature_info {
+    padding-left: 8rem;
+}
+
+.card_product {
+    border-radius: 4px;
+    transition: all 0.3s ease-out;
+    height: 100%;
+}
+
+.card_product .card-body {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+}
+
+.card_product .card-body a {
+    text-decoration: none;
+    color: #3C4043;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card_product .card-body a img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 2px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+}
+
+.card_product .card-body a .title {
+    font-size: 1.125rem;
+    margin-bottom: 0;
+    margin-top: 0.25rem;
+}
+
+.card_product .card-body a .price .discount {
+    color: #1967D2;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-right: 0.25rem;
+}
+
+.card_product .card-body a .price .ori_price {
+    font-size: 0.875rem;
+    text-decoration: line-through;
+}
+
+.card_product:hover {
+    transform: translateY(-2px);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+
+.footer .wrapper {
+    background: #EFEAE5;
+    padding: 4rem 0 1rem 0;
+}
+
+.footer .wrapper .footer_menu {
+    padding-left: 0;
+}
+
+.footer .wrapper .footer_menu li {
+    list-style: none;
+}
+
+.footer .wrapper .footer_menu li a {
+    text-decoration: none;
+    color: #3C4043;
+    transition: all 0.3s ease-out;
+}
+
+.footer .wrapper .footer_menu li a:hover {
+    color: #010101;
+}
