@@ -1,8 +1,8 @@
 import React from 'react';
 import dataCard from '../../../Data-Store/card-data/dataCard';
-import Product from '../../constant/products/home';
+import Footer from '../../../layout/footer/footer';
+import Product from '../../constant/products/products';
 import ImgBackground from './../../../assets/abstract_background.jpg';
-import Footer from './../../../layout/footer/footer';
 import './shop.css';
 
 const ShopPage = () => {

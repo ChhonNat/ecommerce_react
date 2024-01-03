@@ -1,15 +1,9 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
-const CardProduct = (props) => {
-
+const CardProductDetial = (props) => {
     const {
         dataCard,
     } = props;
-    const location = useLocation();
-    const { pathname } = location;
-    const parentPath = pathname === '/' ? '/shop' : pathname;
-
     return (
         <>
             {
@@ -19,7 +13,7 @@ const CardProduct = (props) => {
                         <div key={index} className="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <div className="card card_product">
                                 <div className="card-body">
-                                    <a href={`${parentPath}/product-details/${id}`}>
+                                    <a href={`${id}`}>
                                         <img src={imgCard} alt={altCard} />
                                         <h6 className="title">{titleCard}</h6>
                                         <div className="price">
@@ -40,4 +34,4 @@ const CardProduct = (props) => {
     )
 }
 
-export default CardProduct;
+export default CardProductDetial;

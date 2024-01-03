@@ -14,7 +14,7 @@ const FeatureSection = () => {
                                 <p className="my-4">🌟 Dive into a world of unbeatable deals! Shop now and enjoy exclusive discounts 
                                     on your favorite products. Limited-time offers that you won't want to miss. Hurry, 
                                     grab your savings before they vanish! 🚀 #ShopSmart #SaveBig</p>
-                                <a href="pages/shop.html" className="btn btn-light">Shop Now</a>
+                                <a href="/shop" className="btn btn-light">Shop Now</a>
                             </div>
                             <div className="col-md-1"></div>
                             <div className="col-md-5">

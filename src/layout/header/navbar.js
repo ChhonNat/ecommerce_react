@@ -1,11 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { NavDropdown } from 'react-bootstrap';
+import { Button, NavDropdown } from 'react-bootstrap';
 import { MinecartLoaded, Person } from 'react-bootstrap-icons';
 import logo from './../../assets/seephone-e1698080006890.png';
 import './navbar.css';
 
-const MyNavBar = () => {
+const MyNavBar = (props) => {
+    const {
+        handleShow,
+    } = props;
+
     return (
         <header>
             <div className="container-xl fixed-top mt-3">
@@ -45,9 +49,9 @@ const MyNavBar = () => {
                                 <a href="#" className="btn btn-light me-2">
                                     <Person />
                                 </a>
-                                <a href="#" className="btn btn-light">
+                                <Button onClick={handleShow} className="btn btn-light">
                                     <MinecartLoaded />
-                                </a>
+                                </Button>
                             </div>
                         </div>
                     </div>
