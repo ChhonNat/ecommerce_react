@@ -24,7 +24,7 @@ function App() {
       <OrderSideBar
         handleClose={handleClose}
         show={show}
-        headTitle={"Product Orders"}
+        headTitle={"Shopping Cart (23)"}
         content={"Your order here!"}
       />
       <Routes>

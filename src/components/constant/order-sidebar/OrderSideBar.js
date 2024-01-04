@@ -1,4 +1,5 @@
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import OrderListGroup from './ListGroup/OrderListGroup';
 
 const OrderSideBar = (props) => {
     const {
@@ -20,7 +21,10 @@ const OrderSideBar = (props) => {
                     <Offcanvas.Title>{headTitle ?? "Header Title"}</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    {content}
+                    <>
+                        {content}
+                        <OrderListGroup />
+                    </>
                 </Offcanvas.Body>
             </Offcanvas>
         </>

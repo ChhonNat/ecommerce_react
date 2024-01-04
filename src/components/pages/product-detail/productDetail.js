@@ -6,6 +6,7 @@ import { ImgsCarousel } from '../../../Data-Store/card-data/dataCarousel';
 import Footer from '../../../layout/footer/footer';
 import CarouiselProductDetail from '../../constant/carousel/carousel-product-detail';
 import HeroSectionProductDetail from '../../constant/hero-section/hero-section-productDetail';
+import CountItem from '../../constant/product-detail/CountItem';
 import AboutProductDetail from '../../constant/product-detail/about-product-detail';
 import CardProductDetial from '../../constant/products/CardProductDetial';
 import backGround from './../../../assets/abstract_background.jpg';
@@ -42,6 +43,8 @@ const ProductDetail = () => {
         };
     }, []);
 
+    // data carousel
+    const [imgCarousel, setImgCarousel] = useState();
     const [dataProductDetail, setDataProductDetail] = useState();
 
     useEffect(() => {
@@ -51,6 +54,7 @@ const ProductDetail = () => {
                 const modifiedStar = ["-fill", "-fill", "-half", "-half", ""];
                 setDataProductDetail({
                     ...dataFound,
+                    ...ImgsCarousel,
                     Star: modifiedStar,
                     StarCount: '122',
                     subTitleCard: "The Smart Stack and redesigned apps in watchOS 10 help you see more information at a glance. With features like Crash Detection and enhanced workout metrics, Apple Watch SE is better value than ever.",
@@ -60,7 +64,7 @@ const ProductDetail = () => {
                 console.log('Data not found for id:', id);
             }
         }
-    }, [dataCard, id]);
+    }, [dataCard, id, ImgsCarousel]);
 
     return (
         <>
@@ -99,28 +103,11 @@ const ProductDetail = () => {
                                         <p>{dataProductDetail?.subTitleCard ?? "Sub title"}</p>
                                         <p>SKU: <span className="product_sku">{dataProductDetail?.sku ?? "SKU"}</span></p>
                                     </div>
-                                    <div className="item_btn_group mt-4">
-                                        <button
-                                            onClick={decrement}
-                                            type="button"
-                                            className={count < 1 ? "btn btn-light btn_decrease " : "btn btn-light "}
-                                            disabled={count < 1}
-                                        >
-                                            <i className="bi bi-dash"></i>
-                                        </button>
-                                        <div
-                                            className='p-3 fs-4'
-                                        >
-                                            {count}
-                                        </div>
-                                        <button
-                                            onClick={increment}
-                                            type="button"
-                                            className="btn btn-light btn_increase"
-                                        >
-                                            <i className="bi bi-plus-lg"></i>
-                                        </button>
-                                    </div>
+                                    <CountItem
+                                        decrement={decrement}
+                                        count={count}
+                                        increment={increment}
+                                    />
                                     <button
                                         onClick={handleAddToCard}
                                         className="btn btn-primary mt-4"

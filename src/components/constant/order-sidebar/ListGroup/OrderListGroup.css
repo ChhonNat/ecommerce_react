@@ -1,0 +1,10 @@
+.list_item {
+    cursor: pointer;
+}
+.trash_icon{
+    z-index: 50;
+}
+.trash_icon:hover{
+    color: red;
+    cursor: pointer;
+}
