@@ -1,5 +1,5 @@
 import React from 'react';
-import dataCard from '../../../Data-Store/card-data/dataCard';
+import { useSelector } from 'react-redux';
 import Footer from '../../../layout/footer/footer';
 import CategorySection from '../../constant/catagory/cantagory';
 import FeatureSection from '../../constant/fealture-products/fealture-products';
@@ -7,6 +7,7 @@ import HeroSection from '../../constant/hero-section/hero-section';
 import Product from '../../constant/products/products';
 
 const HomePage = () => {
+  const dataCard = useSelector((state) => state?.productData)
   const handleViewMore = () => {
     alert("view more action");
   }

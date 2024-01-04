@@ -7,10 +7,16 @@ import CardProductOrder from '../../products/card-product-order/CardProductOrder
 import './OrderListGroup.css';
 
 
-const OrderListGroup = () => {
-    
-    const alertClicked = () => {
-        alert('You clicked the third ListGroupItem');
+const OrderListGroup = (props) => {
+
+    const {
+        selectAll,
+    } = props;
+
+    // each select item
+    const [selectItem, setSelectItem] = useState(false);
+    const handleSelectEachItem = (e) => {
+        setSelectItem(e.target.checked);
     };
     const [count, setCount] = useState(0);
 
@@ -32,7 +38,7 @@ const OrderListGroup = () => {
                         titleCard,
                         priceDiscount,
                         originPrice,
-                    }= item;
+                    } = item;
                     return (
                         <ListGroup.Item key={id}>
                             <div
@@ -43,7 +49,11 @@ const OrderListGroup = () => {
                                     flexDirection: 'row'
                                 }}
                             >
-                                <Form.Check aria-label="option 1" />
+                                <Form.Check
+                                    aria-label="option 1"
+                                    checked={selectAll ?? selectItem}
+                                    onChange={handleSelectEachItem}
+                                />
                                 <Trash className='trash_icon' />
                             </div>
                             <CardProductOrder
