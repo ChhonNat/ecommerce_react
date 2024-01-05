@@ -1,7 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
+import { setOrderList } from './Data-Store/globle-state/OrderList';
 import OrderSideBar from './components/constant/order-sidebar/OrderSideBar';
 import AboutPage from './components/pages/about/home';
 import ContactPage from './components/pages/contact/home';
@@ -12,14 +14,21 @@ import ShopPage from './components/pages/shop/shop';
 import MyNavBar from './layout/header/navbar';
 
 function App() {
-  
+
+  const dispatch = useDispatch();
+  // handle open Order lists
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    dispatch(setOrderList());
+    setShow(true);
+  };
+
   return (
     <Router>
-      <MyNavBar 
+      <MyNavBar
         handleShow={handleShow}
+        notiProd="922"
       />
       <OrderSideBar
         handleClose={handleClose}

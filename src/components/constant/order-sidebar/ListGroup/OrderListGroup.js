@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Trash } from 'react-bootstrap-icons';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDataCardUsing } from '../../../../Data-Store/globle-state/DataCardUsing';
 import CardProductOrder from '../../products/card-product-order/CardProductOrder';
 import './OrderListGroup.css';
 
@@ -13,27 +15,54 @@ const OrderListGroup = (props) => {
         dataCard
     } = props;
 
-    const [count, setCount] = useState(0);
+    const dispatch = useDispatch();
+    // get data from store
+    const DataCardUsing = useSelector((state) => state.DataCardUsing);
+    const tmpOrderList = useSelector((state) => state.OrderListStore);
 
-    const increment = () => {
+    console.log(tmpOrderList);
+    const [count, setCount] = useState(0);
+    const [tmpQty, setTmpQty] = useState({});
+
+    useEffect(() => {
+        const dataCardIds = dataCard.map(item => item.id);
+        if (dataCardIds.includes(DataCardUsing?.id)) {
+            console.log(DataCardUsing?.qty);
+        }
+    }, [DataCardUsing, dataCard]);
+
+    const increment = (id, oldQty) => {
         setCount(prevCount => prevCount + 1);
+        let qty = oldQty + 1;
+        const holdActionQty = { id: id, qty: qty };
+        dispatch(setDataCardUsing(holdActionQty));
+        // console.log(qty);
     }
 
-    const decrement = () => {
+    // useEffect(() => {
+    //     if (count > 0) {
+
+    //     }
+    // }, [count]);
+
+    const decrement = (id, oldQty) => {
         setCount(prevCount => prevCount - 1);
     }
 
     return (
         <ListGroup variant="flush">
             {
-                dataCard?.map((item) => {
+                tmpOrderList?.map((item) => {
                     const {
                         id,
-                        imgCard,
-                        altCard,
+                        img,
+                        alt,
                         titleCard,
                         priceDiscount,
                         originPrice,
+                        shipping,
+                        originQty
+
                     } = item;
                     return (
                         <ListGroup.Item key={id}>
@@ -54,15 +83,15 @@ const OrderListGroup = (props) => {
                             </div>
                             <CardProductOrder
                                 link={"#"}
-                                img={imgCard}
-                                alt={altCard}
+                                img={img}
+                                alt={alt}
                                 title={titleCard}
                                 date={"Jan 06 23"}
                                 price={originPrice}
-                                shipping={"Stardart shipping"}
-                                count={count}
-                                increment={increment}
-                                decrement={decrement}
+                                shipping={shipping ?? "Stardart shipping"}
+                                count={DataCardUsing?.id === id ? DataCardUsing?.id : originQty}
+                                increment={() => increment(item.id, DataCardUsing?.id)}
+                                decrement={() => decrement(item.id, DataCardUsing?.id)}
                             />
                         </ListGroup.Item>
                     )

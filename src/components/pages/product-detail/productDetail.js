@@ -1,8 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import dataCard from '../../../Data-Store/card-data/dataCard';
 import { ImgsCarousel } from '../../../Data-Store/card-data/dataCarousel';
+import { setOrderList } from '../../../Data-Store/globle-state/OrderList';
 import Footer from '../../../layout/footer/footer';
 import CarouiselProductDetail from '../../constant/carousel/carousel-product-detail';
 import HeroSectionProductDetail from '../../constant/hero-section/hero-section-productDetail';
@@ -14,21 +16,45 @@ import './productDetail.css';
 
 const ProductDetail = () => {
 
+    // redux called
+    const dispatch = useDispatch();
+    
+
+    // data carousel
+    const [imgCarousel, setImgCarousel] = useState();
+    const [dataProductDetail, setDataProductDetail] = useState();
+
+    // detect curret path url
     let { id } = useParams();
 
-    const [count, setCount] = useState(0);
-
+    // qty of product
+    const [count, setCount] = useState(1);
     const increment = () => {
         setCount(prevCount => prevCount + 1);
     }
-
     const decrement = () => {
         setCount(prevCount => prevCount - 1);
     }
 
+    // handle add data to store localstorage
+    const [tmpAddData, setTmpAddData] = useState([]);
     const handleAddToCard = () => {
-        alert("your product " + count + " to card");
-    }
+        const holdData = JSON.parse(localStorage.getItem('orderList')) || []; // Retrieve existing data from localStorage
+        const newItem = {
+            id: dataProductDetail?.id,
+            img: dataProductDetail?.imgCard,
+            alt: dataProductDetail?.altCard,
+            titleCard: dataProductDetail?.titleCard,
+            originPrice: dataProductDetail?.originPrice,
+            originQty: count,
+            shipping: "Free shipping",
+        };
+        const updatedData = [...holdData, newItem];
+
+        localStorage.setItem('orderList', JSON.stringify(updatedData));
+        dispatch(setOrderList());
+    };
+
 
 
     useEffect(() => {
@@ -43,9 +69,7 @@ const ProductDetail = () => {
         };
     }, []);
 
-    // data carousel
-    const [imgCarousel, setImgCarousel] = useState();
-    const [dataProductDetail, setDataProductDetail] = useState();
+
 
     useEffect(() => {
         if (dataCard.length) {

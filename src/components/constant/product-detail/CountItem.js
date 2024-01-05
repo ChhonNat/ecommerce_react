@@ -17,8 +17,8 @@ const CountItem = (props) => {
             <button
                 onClick={decrement}
                 type="button"
-                className={count < 1 ? "btn btn-light btn_decrease " : "btn btn-light "}
-                disabled={count < 1}
+                className={count <= 1 ? "btn btn-light btn_decrease " : "btn btn-light "}
+                disabled={count <= 1}
                 style={styleBtn ?? {}}
             >
                 <i className="bi bi-dash"></i>
