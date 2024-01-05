@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import dataCard from '../../../Data-Store/card-data/dataCard';
 import OrderListGroup from './ListGroup/OrderListGroup';
 
 const OrderSideBar = (props) => {
@@ -11,11 +12,47 @@ const OrderSideBar = (props) => {
         content
     } = props;
 
+    const [data, setData] = useState(dataCard);
+
     // select items all
     const [selectAll, setSelectAll] = useState(false);
-    const handleSelectAll = (e) => {
-        setSelectAll(e.target.checked);
+
+    const [selectedItems, setSelectedItems] = useState([])
+
+    function checkboxHandler(e) {
+        let isSelected = e.target.checked;
+        let value = parseInt(e.target.value);
+
+        if (isSelected) {
+            setSelectedItems([...selectedItems, value])
+        } else {
+            setSelectedItems((prevData) => {
+                return prevData.filter((id) => {
+                    return id !== value
+                })
+            })
+        }
     }
+
+    function checkAllHandler(e) {
+
+        setSelectAll(e.target.checked);
+        if (data.length === selectedItems.length) {
+            setSelectedItems([])
+        } else if (!selectAll) {
+            const postIds = data.map((item) => {
+                return item.id
+            })
+
+            setSelectedItems(postIds)
+        }
+    }
+
+    useEffect(() => {
+        if (data.length !== selectedItems.length) {
+            setSelectAll(false);
+        }
+    }, [selectedItems, data])
 
     return (
         <>
@@ -50,7 +87,7 @@ const OrderSideBar = (props) => {
                             id='Select All'
                             label="Select All"
                             checked={selectAll}
-                            onChange={handleSelectAll}
+                            onChange={checkAllHandler}
                         />
                     </div>
                 </Offcanvas.Header>
@@ -58,7 +95,9 @@ const OrderSideBar = (props) => {
                     <>
                         {content}
                         <OrderListGroup
-                            selectAll={selectAll}
+                            selectedItems={selectedItems}
+                            checkboxHandler={checkboxHandler}
+                            dataCard={data}
                         />
                     </>
                 </Offcanvas.Body>

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
 import ListGroup from 'react-bootstrap/ListGroup';
-import dataCard from '../../../../Data-Store/card-data/dataCard';
 import CardProductOrder from '../../products/card-product-order/CardProductOrder';
 import './OrderListGroup.css';
 
@@ -10,14 +8,11 @@ import './OrderListGroup.css';
 const OrderListGroup = (props) => {
 
     const {
-        selectAll,
+        selectedItems,
+        checkboxHandler,
+        dataCard
     } = props;
 
-    // each select item
-    const [selectItem, setSelectItem] = useState(false);
-    const handleSelectEachItem = (e) => {
-        setSelectItem(e.target.checked);
-    };
     const [count, setCount] = useState(0);
 
     const increment = () => {
@@ -27,6 +22,7 @@ const OrderListGroup = (props) => {
     const decrement = () => {
         setCount(prevCount => prevCount - 1);
     }
+
     return (
         <ListGroup variant="flush">
             {
@@ -49,11 +45,11 @@ const OrderListGroup = (props) => {
                                     flexDirection: 'row'
                                 }}
                             >
-                                <Form.Check
-                                    aria-label="option 1"
-                                    checked={selectAll ?? selectItem}
-                                    onChange={handleSelectEachItem}
-                                />
+
+                                <label>
+                                    <input type="checkbox" checked={selectedItems.includes(item.id)} value={item.id} onChange={checkboxHandler} />
+                                </label>
+
                                 <Trash className='trash_icon' />
                             </div>
                             <CardProductOrder
