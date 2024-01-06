@@ -16,10 +16,6 @@ import './productDetail.css';
 
 const ProductDetail = () => {
 
-    // redux called
-    const dispatch = useDispatch();
-    
-
     // data carousel
     const [imgCarousel, setImgCarousel] = useState();
     const [dataProductDetail, setDataProductDetail] = useState();
@@ -36,26 +32,45 @@ const ProductDetail = () => {
         setCount(prevCount => prevCount - 1);
     }
 
+    // dispatch
+    const dispatch = useDispatch();
+
     // handle add data to store localstorage
-    const [tmpAddData, setTmpAddData] = useState([]);
     const handleAddToCard = () => {
         const holdData = JSON.parse(localStorage.getItem('orderList')) || []; // Retrieve existing data from localStorage
-        const newItem = {
-            id: dataProductDetail?.id,
-            img: dataProductDetail?.imgCard,
-            alt: dataProductDetail?.altCard,
-            titleCard: dataProductDetail?.titleCard,
-            originPrice: dataProductDetail?.originPrice,
-            originQty: count,
-            shipping: "Free shipping",
-        };
-        const updatedData = [...holdData, newItem];
 
-        localStorage.setItem('orderList', JSON.stringify(updatedData));
+        const existingItem = holdData.find(item => item.id === dataProductDetail?.id);
+        if (existingItem) {
+            // If the item already exists, update its originQty
+            const updatedData = holdData.map(item => {
+                if (item.id === existingItem.id) {
+                    return {
+                        ...item,
+                        originQty: item.originQty + count,
+                    };
+                }
+                return item;
+            });
+
+            localStorage.setItem('orderList', JSON.stringify(updatedData));
+        } else {
+            // If the item doesn't exist, add it to holdData
+            const newItem = {
+                id: dataProductDetail?.id,
+                img: dataProductDetail?.imgCard,
+                alt: dataProductDetail?.altCard,
+                titleCard: dataProductDetail?.titleCard,
+                originPrice: dataProductDetail?.originPrice,
+                originQty: count,
+                shipping: "Free shipping",
+            };
+            const updatedData = [...holdData, newItem];
+
+            localStorage.setItem('orderList', JSON.stringify(updatedData));
+        }
+
         dispatch(setOrderList());
     };
-
-
 
     useEffect(() => {
         const script = document.createElement('script');

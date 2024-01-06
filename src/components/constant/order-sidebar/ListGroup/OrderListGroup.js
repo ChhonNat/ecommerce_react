@@ -20,7 +20,7 @@ const OrderListGroup = (props) => {
     const DataCardUsing = useSelector((state) => state.DataCardUsing);
     const tmpOrderList = useSelector((state) => state.OrderListStore);
 
-    console.log(tmpOrderList);
+    // console.log(tmpOrderList);
     const [count, setCount] = useState(0);
     const [tmpQty, setTmpQty] = useState({});
 

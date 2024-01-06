@@ -1,15 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, NavDropdown } from 'react-bootstrap';
 import { MinecartLoaded, Person } from 'react-bootstrap-icons';
+import { useSelector } from 'react-redux';
 import logo from './../../assets/seephone-e1698080006890.png';
 import './navbar.css';
 
 const MyNavBar = (props) => {
     const {
         handleShow,
-        notiProd
     } = props;
+
+    const tmpOrderList = useSelector((state) => state.OrderListStore);
+    const [notiProd, setNotiProd] = useState('');
+    useEffect(() => {
+        setNotiProd(tmpOrderList?.length);
+    }, [tmpOrderList]);
 
     return (
         <header>
@@ -57,7 +63,7 @@ const MyNavBar = (props) => {
                                             ? notiProd > 99
                                                 ? "99+"
                                                 : notiProd
-                                            : "0"
+                                            : ""
                                         }
                                     </span>
                                 </Button>
