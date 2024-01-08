@@ -5,6 +5,7 @@ const CardProduct = (props) => {
 
     const {
         dataCard,
+        handleAddCart
     } = props;
     const location = useLocation();
     const { pathname } = location;
@@ -28,7 +29,7 @@ const CardProduct = (props) => {
                                         </div>
                                     </a>
                                     <div className="mt-auto">
-                                        <button className="btn btn-light mt-3 w-100">Add to Card</button>
+                                        <button onClick={() => handleAddCart(id)} className="btn btn-light mt-3 w-100">Add to Card</button>
                                     </div>
                                 </div>
                             </div>

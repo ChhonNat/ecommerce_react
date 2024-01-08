@@ -58,7 +58,7 @@ const MyNavBar = (props) => {
                                 </a>
                                 <Button onClick={handleShow} className="btn btn-light">
                                     <MinecartLoaded />
-                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    <span style={{marginTop: "10px"}} className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                         {notiProd > 0
                                             ? notiProd > 99
                                                 ? "99+"

@@ -3,6 +3,7 @@ import { Trash } from 'react-bootstrap-icons';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDataCardUsing } from '../../../../Data-Store/globle-state/DataCardUsing';
+import { setOrderList } from '../../../../Data-Store/globle-state/OrderList';
 import CardProductOrder from '../../products/card-product-order/CardProductOrder';
 import './OrderListGroup.css';
 
@@ -49,6 +50,20 @@ const OrderListGroup = (props) => {
         setCount(prevCount => prevCount - 1);
     }
 
+    // Handle remove item
+    const handleRemoveItem = (id) => {
+        const holdData = JSON.parse(localStorage.getItem('orderList')) || []; // Retrieve existing data from localStorage
+
+        const existingItem = holdData.filter(item => item.id !== id);
+        if (existingItem.length) {
+            const updatedData = [...holdData, existingItem];
+
+            localStorage.setItem('orderList', JSON.stringify(updatedData));
+        }
+
+        dispatch(setOrderList());
+    }
+
     return (
         <ListGroup variant="flush">
             {
@@ -79,7 +94,7 @@ const OrderListGroup = (props) => {
                                     <input type="checkbox" checked={selectedItems.includes(item.id)} value={item.id} onChange={checkboxHandler} />
                                 </label>
 
-                                <Trash className='trash_icon' />
+                                <Trash onClick={() => handleRemoveItem(id)} className='trash_icon' />
                             </div>
                             <CardProductOrder
                                 link={"#"}
